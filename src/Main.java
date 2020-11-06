@@ -1,7 +1,10 @@
+
 /**
  * @author Lubowa
  */
 import java.util.HashMap;
+import java.util.ArrayList; // import the ArrayList class
+
 public class Main {
 
 	public static void main(String[] args) {
@@ -17,14 +20,20 @@ public class Main {
 	 * @return map A HashMap containing all your marks
 	 */
 	
-	private static HashMap<Integer, Integer> putMarks(){
-		HashMap<Integer, Integer> map = new HashMap<Integer, Integer>(){
+	private static ArrayList<int[]> putMarks(){
+		ArrayList<int[]> marks = new ArrayList<int[]>(){
 			{
-				put(66, 4);
-				put(70, 5);	
+
+				add(new int[]{66,4});
+				add(new int[]{83,4});
+				add(new int[]{89,4});
+				add(new int[]{64,3});
+				add(new int[]{72,4});
+
+				
 			}
 		};
-		return map;
+		return marks;
 	}
 	
 	
@@ -33,29 +42,29 @@ public class Main {
 	 * @param map A HashMap of the marks to use in the caluculation.
 	 * It then prints the CGPA on the screen
 	 */
-	private static void calculate(HashMap<Integer, Integer> map) {
+	private static void calculate(ArrayList<int[]> map) {
 		double grade_sum=0;
 		double grade = 0;
 		double cu_sum =0;
 		double cgpa=0;
-		for(Integer i:map.keySet()) {
-			if(i>=80) {
-				grade = 5*map.get(i);
+		for(int[] i:map) {
+			if(i[0]>=80) {
+				grade = 5*i[1];
 			}
-			else if(i>=75) {
-				grade = 4.5*map.get(i);
+			else if(i[0]>=75) {
+				grade = 4.5*i[1];
 			}
-			else if(i>=70) {
-				grade = 4*map.get(i);
+			else if(i[0]>=70) {
+				grade = 4*i[1];
 			}
-			else if(i>=65) {
-				grade = 3.5*map.get(i);
+			else if(i[0]>=65) {
+				grade = 3.5*i[1];
 			}
-			else if(i>=60) {
-				grade = 3.0*map.get(i);
+			else if(i[0]>=60) {
+				grade = 3.0*i[1];
 			}
 			grade_sum=grade_sum+grade;
-			cu_sum=cu_sum+map.get(i);
+			cu_sum=cu_sum+i[1];
 
 		}
 		cgpa = grade_sum/cu_sum;
